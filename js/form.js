@@ -36,7 +36,7 @@ $(function () {
             // Used to skip the "Warning" step if the user is old enough.
             if (currentIndex === 2 && Number($("#age-2").val()) >= 18)
             {
-                form.steps("next");
+                form.steps("setStep", 0);
             }
             // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
             if (currentIndex === 2 && priorIndex === 3)
@@ -48,15 +48,17 @@ $(function () {
         {
             form.validate().settings.ignore = ":disabled";
             return form.valid();
+
         },
         onFinished: function (event, currentIndex)
         {
             alert("Submitted!");
             var form = $(this);
+            console.log(form);
 
             // Submit form input
-            form.submit();
-            console.log(form);
+            //$('form').submit();
+
         }
     }).validate({
         errorPlacement: function errorPlacement(error, element) { element.before(error); },
